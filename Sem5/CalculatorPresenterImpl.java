@@ -1,11 +1,9 @@
 package java_oop.Sem5;
 
-public class CalculatorPresenterImpl implements CalculatorPresenter {
-    private CalculatorModel model;
+public class CalculatorPresenterImpl extends CalculatorModelImpl implements CalculatorPresenter {
     private CalculatorView view;
 
-    public CalculatorPresenterImpl(CalculatorModel model, CalculatorView view) {
-        this.model = model;
+    public CalculatorPresenterImpl(CalculatorView view) {
         this.view = view;
     }
 
@@ -18,17 +16,17 @@ public class CalculatorPresenterImpl implements CalculatorPresenter {
         double result;
         switch (operator) {
             case ADDITION:
-                result = model.add(num1, num2);
+                result = this.add(num1, num2);
                 break;
             case SUBTRACTION:
-                result = model.subtract(num1, num2);
+                result = this.subtract(num1, num2);
                 break;
             case MULTIPLICATION:
-                result = model.multiply(num1, num2);
+                result = this.multiply(num1, num2);
                 break;
             case DIVISION:
                 try {
-                    result = model.divide(num1, num2);
+                    result = this.divide(num1, num2);
                 } catch (ArithmeticException e) {
                     view.showErrorMessage(e.getMessage());
                     return;
